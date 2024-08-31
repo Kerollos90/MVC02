@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace Company.Repository.Interfaces
 {
-    public interface IEmployeeRepository : IGenirecRepository<Employee>
+    public interface IDepartmentRepository:IGenirecRepository<Department>
     {
-        
-        
 
     }
 }

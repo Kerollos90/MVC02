@@ -9,15 +9,14 @@ using System.Threading.Tasks;
 
 namespace Company.Repository.Repositories
 {
-    public class EmployeeRepository :GenirecRepository<Employee>, IEmployeeRepository
+    public class DepartmentRepository:GenirecRepository<Department>,IDepartmentRepository
     {
-        private readonly CompanyDbContext _context;
 
-        public EmployeeRepository(CompanyDbContext Context):base(Context)
+        public DepartmentRepository(CompanyDbContext Context) : base(Context)
         {
-            _context = Context;
+            
         }
 
-      
+
     }
 }
