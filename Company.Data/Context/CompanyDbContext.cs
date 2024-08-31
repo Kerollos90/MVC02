@@ -27,9 +27,9 @@ namespace Company.Data.Context
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<Employee> Employees  { get; set; }
+        public DbSet<Employee> Employee  { get; set; }
 
-        public DbSet<Department> Departments { get; set; }
+        public DbSet<Department> Department { get; set; }
 
 
 
