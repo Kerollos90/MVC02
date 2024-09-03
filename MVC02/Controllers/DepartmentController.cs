@@ -1,20 +1,21 @@
 ﻿using Company.Repository.Interfaces;
+using Company.Service.Interface.DepartmenInterface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MVC02.Controllers
 {
     public class DepartmentController : Controller
     {
-        private readonly IDepartmentRepository _departmentRepository;
+        private readonly IDepartmentService _departmentService;
 
-        public DepartmentController(IDepartmentRepository departmentRepository)
+        public DepartmentController(IDepartmentService departmentService)
         {
-            _departmentRepository = departmentRepository;
+            _departmentService = departmentService;
         }
 
         public IActionResult Index()
         {
-            var department = _departmentRepository.GetAll();
+            var department = _departmentService.GetAll();
             return View(department);
         }
     }

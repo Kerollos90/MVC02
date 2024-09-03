@@ -1,6 +1,8 @@
 using Company.Data.Context;
 using Company.Repository.Interfaces;
 using Company.Repository.Repositories;
+using Company.Service.Interface.DepartmenInterface;
+using Company.Service.Service.Departmentservice;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +17,8 @@ builder.Services.AddDbContext<CompanyDbContext>(o => {
 
 });
 
-builder.Services.AddTransient< IDepartmentRepository , DepartmentRepository>();
+builder.Services.AddScoped< IDepartmentRepository , DepartmentRepository>();
+builder.Services.AddScoped< IDepartmentService , DepartmentService>();
 
 var app = builder.Build();
 
