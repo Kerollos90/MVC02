@@ -18,9 +18,17 @@ namespace Company.Service.Service.Departmentservice
             _departmentRepository = departmentRepository;
         }
 
-        public void Add(Department entity)
+        public void Add(Department department)
         {
-            throw new NotImplementedException();
+            var mapped = new Department
+            {
+                Name = department.Name,
+                Code = department.Code,
+                CreateAt = DateTime.Now
+
+
+            };
+            _departmentRepository.Add(mapped);
         }
 
         public void Delete(Department entity)
