@@ -9,7 +9,7 @@ namespace Company.Service.Interface.DepartmenInterface
 {
     public interface IDepartmentService
     {
-        Department GetById(int id);
+        Department GetById(int? id);
         IEnumerable<Department> GetAll();
         void Add(Department entity);
 
