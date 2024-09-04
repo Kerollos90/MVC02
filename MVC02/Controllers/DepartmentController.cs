@@ -3,6 +3,9 @@ using Company.Repository.Interfaces;
 using Company.Service.Interface.DepartmenInterface;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore.Update.Internal;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 
 namespace MVC02.Controllers
 {
@@ -62,7 +65,7 @@ namespace MVC02.Controllers
         }
 
 
-        public IActionResult Details(int? id)
+        public IActionResult Details(int? id ,string viewname="Details")
         { 
             var dept = _departmentService.GetById(id);
 
@@ -70,9 +73,36 @@ namespace MVC02.Controllers
             if(dept is null)
                 return RedirectToAction("NotFound","Home");
            
-            return View(dept);
+            return View(viewname,dept);
 
 
+        
+        
+        
+        }
+
+
+        public IActionResult Update(int? Id)
+        {
+            return Details(Id,"Update");
+
+
+        
+        
+        }
+
+
+        [HttpPost]
+        public IActionResult Update(int? id,Department department)
+        {
+            if(department.Id != id.Value )
+                return RedirectToAction("NotFound", "Home");
+
+
+            _departmentService.Update(department);
+            return RedirectToAction(nameof(Index));
+
+            
         
         
         
