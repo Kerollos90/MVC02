@@ -108,7 +108,7 @@ namespace MVC02.Controllers
         
         }  
         
-        public IActionResult Delete(int? id)
+        public IActionResult Delete(int id)
         {
             var dept = _departmentService.GetById(id);
 
