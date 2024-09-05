@@ -26,7 +26,7 @@ namespace Company.Data.Context
 
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<BaseEntity>().HasQueryFilter(x => !x.Deleted);
+            //modelBuilder.Entity<BaseEntity>().HasQueryFilter(x => !x.Deleted);
 
         }
 
