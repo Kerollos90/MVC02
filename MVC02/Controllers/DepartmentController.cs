@@ -106,6 +106,24 @@ namespace MVC02.Controllers
         
         
         
+        }  
+        
+        public IActionResult Delete(int? id)
+        {
+            var dept = _departmentService.GetById(id);
+
+
+            if (dept is null)
+                return RedirectToAction("NotFound", "Home");
+
+
+            _departmentService.Delete(dept);
+            return RedirectToAction(nameof(Index));
+
+            
+        
+        
+        
         }
 
     }

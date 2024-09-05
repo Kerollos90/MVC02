@@ -33,7 +33,7 @@ namespace Company.Service.Service.Departmentservice
 
         public void Delete(Department entity)
         {
-            throw new NotImplementedException();
+            _departmentRepository.Delete(entity);
         }
 
         public IEnumerable<Department> GetAll()
@@ -64,5 +64,8 @@ namespace Company.Service.Service.Departmentservice
 
             
         }
+
+
+       
     }
 }
