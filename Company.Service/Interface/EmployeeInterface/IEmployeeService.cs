@@ -16,6 +16,10 @@ namespace Company.Service.Interface.EmployeeInterface
         void Update(Employee employee);
          void Delete(Employee employee);
 
+        IEnumerable<Employee> GetEmployeeByName(string Name);
+        IEnumerable<Employee> GetEmployeeByAddress(string Address);
+
+
 
 
 

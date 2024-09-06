@@ -14,9 +14,13 @@ namespace MVC02.Controllers
         {
             _employeeService = employeeService;
         }
-        public IActionResult Index()
+        public IActionResult Index(string SearchInp )
         {
-            var emp = _employeeService.GetAll();
+            IEnumerable<Employee> emp = new List<Employee>();
+            if(string.IsNullOrWhiteSpace(SearchInp))
+            emp = _employeeService.GetAll();
+            else
+                emp= _employeeService.GetEmployeeByName(SearchInp);
             return View(emp);
         }
 

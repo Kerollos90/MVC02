@@ -59,6 +59,19 @@ namespace Company.Service.Service.Employeeservice
             
         }
 
+        public IEnumerable<Employee> GetEmployeeByAddress(string Address)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Employee> GetEmployeeByName(string SearchInp)
+        {
+            
+            var emp= _unitOfWork.EmployeeRepository.GetEmployeeByName(SearchInp);
+            return emp; 
+            
+        }
+
         public void Update(Employee employee)
         {
             _unitOfWork.EmployeeRepository.Update(employee);
