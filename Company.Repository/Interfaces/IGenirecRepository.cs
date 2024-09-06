@@ -9,7 +9,7 @@ namespace Company.Repository.Interfaces
 {
     public interface IGenirecRepository<T> where T : BaseEntity
     {
-        T GetById(int id);
+        T GetById(int? id);
         IEnumerable<T> GetAll();
         void Add(T entity);
 

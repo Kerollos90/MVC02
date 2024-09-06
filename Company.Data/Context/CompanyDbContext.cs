@@ -25,6 +25,9 @@ namespace Company.Data.Context
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             base.OnModelCreating(modelBuilder);
+
+            //modelBuilder.Entity<BaseEntity>().HasQueryFilter(x => !x.Deleted);
+
         }
 
         public DbSet<Employee> Employees  { get; set; }

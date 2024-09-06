@@ -20,18 +20,16 @@ namespace Company.Repository.Repositories
         }
 
         public void Add(T entity)
-        {
-            _context.Set<T>().Add(entity);
-            _context.SaveChanges();
-        }
+        
+           => _context.Set<T>().Add(entity);
+       
 
         public void Delete(T entity)
-        {
-            _context.Set<T>().Remove(entity);
-            _context.SaveChanges();
-        }
+     
+           => _context.Set<T>().Remove(entity);
+        
 
-        public T GetById(int id)
+        public T GetById(int? id)
         
            => _context.Set<T>().Find(id);
             
@@ -44,9 +42,8 @@ namespace Company.Repository.Repositories
         
 
         public void Update(T entity)
-        {
-            _context.Set<T>().Update(entity);
-            _context.SaveChanges();
-        }
+        
+           => _context.Set<T>().Update(entity);
+        
     }
 }
