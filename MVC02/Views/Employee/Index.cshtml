@@ -51,29 +51,7 @@
                     <td>@employee.CreateAt</td>
 
 
-                    <td>
-                        <a asp-action="Details" asp-route-id="@employee.Id" class=" btn btn-warning">
-
-                            <i class="fas fa-eye"></i>Details
-                        </a>
-
-
-                    </td>
-
-                    <td>
-                        <a asp-action="Update" asp-route-id="@employee.Id" class=" btn btn-success">
-
-                            <i class="fas fa-edit"></i>Update
-                        </a>
-
-                    </td>
-
-                    <td>
-                        <a asp-action="Delete" asp-route-id="@employee.Id" class=" btn btn-danger">
-
-                            <i class="fas fa-trash"></i>Delete
-                        </a>
-                    </td>
+                    <partial name="_ActionButtonPartialView" model="@employee.Id.ToString()" />
 
                 </tr>
 
