@@ -1,0 +1,67 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Update Employee</h1>
+<br />
+<br />
+
+<form asp-action="Update">
+    <div asp-validation-summary="All"></div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Name"></label>
+        <input type="Text" asp-for="Name" class="form-control" />
+        @*  <span asp-validation-for="Code" class="text-danger"></span> *@
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Age"></label>
+        <input type="Text" asp-for="Age" class="form-control" />
+        @*   <span asp-validation-for="Name" class="text-danger"></span> *@
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="PhoneNumber"></label>
+        <input type="Text" asp-for="PhoneNumber" class="form-control" />
+        @*   <span asp-validation-for="Name" class="text-danger"></span> *@
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Salary"></label>
+        <input type="Text" asp-for="Salary" class="form-control" />
+        @*   <span asp-validation-for="Name" class="text-danger"></span> *@
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Address"></label>
+        <input type="Text" asp-for="Address" class="form-control" />
+        @*   <span asp-validation-for="Name" class="text-danger"></span> *@
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="DepartmentId"></label>
+        <input type="Text" asp-for="DepartmentId" class="form-control" />
+        @*   <span asp-validation-for="Name" class="text-danger"></span> *@
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Email"></label>
+        <input type="Text" asp-for="Email" class="form-control" />
+        @*   <span asp-validation-for="Name" class="text-danger"></span> *@
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="HiringDate"></label>
+        <input type="Text" asp-for="HiringDate" class="form-control" />
+        @*   <span asp-validation-for="Name" class="text-danger"></span> *@
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="ImageUrl"></label>
+        <input type="Text" asp-for="ImageUrl" class="form-control" />
+        @*   <span asp-validation-for="Name" class="text-danger"></span> *@
+    </div>
+
+    <input type="submit" value="Save" class="btn btn-primary" />
+    <a asp-action="Index" class=" btn btn-light">Back To List</a>
+
+</form>
+
+
+
+
+
+

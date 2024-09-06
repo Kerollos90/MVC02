@@ -20,11 +20,11 @@ namespace Company.Data.Entity
 
         public string Address   { get; set; }
 
-        public DateTime HiringDate { get; set; }
+        public DateTime? HiringDate { get; set; } 
 
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
 
-        public Department Department { get; set; }
+        public Department? Department { get; set; }
         public int? DepartmentId { get; set; }
 
 

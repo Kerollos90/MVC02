@@ -29,7 +29,7 @@ namespace Company.Repository.Repositories
            => _context.Set<T>().Remove(entity);
         
 
-        public T GetById(int id)
+        public T GetById(int? id)
         
            => _context.Set<T>().Find(id);
             

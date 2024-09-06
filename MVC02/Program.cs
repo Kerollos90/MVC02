@@ -2,7 +2,9 @@ using Company.Data.Context;
 using Company.Repository.Interfaces;
 using Company.Repository.Repositories;
 using Company.Service.Interface.DepartmenInterface;
+using Company.Service.Interface.EmployeeInterface;
 using Company.Service.Service.Departmentservice;
+using Company.Service.Service.Employeeservice;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -26,6 +28,9 @@ public class Program
 
         //builder.Services.AddScoped< IDepartmentRepository , DepartmentRepository>();
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        
+        builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
         builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
