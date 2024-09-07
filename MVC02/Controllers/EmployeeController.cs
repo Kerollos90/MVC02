@@ -1,4 +1,5 @@
 ﻿using Company.Data.Entity;
+using Company.Service.Interface.DepartmenInterface;
 using Company.Service.Interface.EmployeeInterface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -9,10 +10,12 @@ namespace MVC02.Controllers
     public class EmployeeController : Controller
     {
         private readonly IEmployeeService _employeeService;
+        private readonly IDepartmentService _departmentService;
 
-        public EmployeeController(IEmployeeService employeeService)
+        public EmployeeController(IEmployeeService employeeService ,IDepartmentService departmentService)
         {
             _employeeService = employeeService;
+            _departmentService = departmentService;
         }
         public IActionResult Index(string SearchInp)
         {
@@ -34,7 +37,7 @@ namespace MVC02.Controllers
         {
 
 
-
+                ViewBag.Department = _departmentService.GetAll();
             return View();
         }
 
@@ -43,6 +46,7 @@ namespace MVC02.Controllers
         {
             try
             {
+
                 if (ModelState.IsValid)
                 {
                     _employeeService.Add(employee);
