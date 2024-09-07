@@ -20,7 +20,7 @@ namespace Company.Service.Helper
 
             using var filestream = new FileStream(filepath, FileMode.Create);
             File.CopyTo(filestream);
-            return filepath;
+            return filename;
 
 
 
