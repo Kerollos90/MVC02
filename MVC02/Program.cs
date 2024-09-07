@@ -3,6 +3,7 @@ using Company.Repository.Interfaces;
 using Company.Repository.Repositories;
 using Company.Service.Interface.DepartmenInterface;
 using Company.Service.Interface.EmployeeInterface;
+using Company.Service.Mapping;
 using Company.Service.Service.Departmentservice;
 using Company.Service.Service.Employeeservice;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 public class Program
 {
     public static void Main(string[] args)
-    {
+  {
         var builder = WebApplication.CreateBuilder(args);
 
 
@@ -33,6 +34,9 @@ public class Program
         builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
         builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+        // builder.Services.AddAutoMapper(x => x.AddProfile(new EmployeeProfile()));
+        builder.Services.AddAutoMapper(x => x.AddProfile(new EmployeeProfile()));
+        builder.Services.AddAutoMapper(x => x.AddProfile(new DepartmentProfile()));
 
         var app = builder.Build();
 

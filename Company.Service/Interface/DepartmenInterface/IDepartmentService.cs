@@ -1,4 +1,5 @@
 ﻿using Company.Data.Entity;
+using Company.Service.Interface.DepartmenInterface.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,12 @@ namespace Company.Service.Interface.DepartmenInterface
 {
     public interface IDepartmentService
     {
-        Department GetById(int? id);
-        IEnumerable<Department> GetAll();
-        void Add(Department entity);
+        DepartmentDto GetById(int? id);
+        IEnumerable<DepartmentDto> GetAll();
+        void Add(DepartmentDto entity);
 
-        void Delete(Department entity);
-        void Update(Department entity);
+        void Delete(DepartmentDto entity);
+        void Update(DepartmentDto entity);
 
 
     }
