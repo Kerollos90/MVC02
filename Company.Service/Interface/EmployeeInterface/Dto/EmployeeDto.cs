@@ -1,8 +1,10 @@
 ﻿using Company.Data.Entity;
 using Company.Service.Interface.DepartmenInterface.Dto;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,7 +26,8 @@ namespace Company.Service.Interface.EmployeeInterface.Dto
 
         public DateTime? HiringDate { get; set; }
 
-        public string? ImageUrl { get; set; }
+        public IFormFile Image { get; set; }
+        public string  ImageUrl { get; set; }
 
         public DepartmentDto? Department { get; set; }
         public int? DepartmentId { get; set; }
