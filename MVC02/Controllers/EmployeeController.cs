@@ -14,13 +14,19 @@ namespace MVC02.Controllers
         {
             _employeeService = employeeService;
         }
-        public IActionResult Index(string SearchInp )
+        public IActionResult Index(string SearchInp)
         {
+            ViewBag.message = "Hello from employee index (viewbag)";
+            ViewData["test message"]= "Hello from employee index(viewdata)";
+            TempData["test temp message"] = "Hello from employee index (temp)";
+
+
+
             IEnumerable<Employee> emp = new List<Employee>();
-            if(string.IsNullOrWhiteSpace(SearchInp))
-            emp = _employeeService.GetAll();
+            if (string.IsNullOrWhiteSpace(SearchInp))
+                emp = _employeeService.GetAll();
             else
-                emp= _employeeService.GetEmployeeByName(SearchInp);
+                emp = _employeeService.GetEmployeeByName(SearchInp);
             return View(emp);
         }
 
@@ -57,41 +63,41 @@ namespace MVC02.Controllers
             {
                 ModelState.TryAddModelError("Employee Error ", ex.Message);
                 return View(employee);
-            
-            }            
+
+            }
         }
 
 
-        public IActionResult Details(int? id,string viewtable="Details") 
+        public IActionResult Details(int? id, string viewtable = "Details")
         {
-            var emp =_employeeService.GetById(id);
-            return View(viewtable,emp);
-        
-        
+            var emp = _employeeService.GetById(id);
+            return View(viewtable, emp);
+
+
         }
 
         [HttpGet]
         public IActionResult Update(int id)
         {
-             
 
-            return Details(id,"Update");
 
-        
-        
+            return Details(id, "Update");
+
+
+
         }
 
 
         [HttpPost]
         public IActionResult Update(int? id, Employee employee)
         {
-            
-            if (employee.Id !=id.Value)
-                return RedirectToAction("NotFound","Home");
+
+            if (employee.Id != id.Value)
+                return RedirectToAction("NotFound", "Home");
 
             _employeeService.Update(employee);
             return RedirectToAction(nameof(Index));
-            
+
 
 
         }
@@ -101,7 +107,7 @@ namespace MVC02.Controllers
             if (employee.Id != id.Value)
                 return RedirectToAction("NotFound", "Home");
 
-            _employeeService.Delete(employee);  
+            _employeeService.Delete(employee);
             return RedirectToAction(nameof(Index));
 
 

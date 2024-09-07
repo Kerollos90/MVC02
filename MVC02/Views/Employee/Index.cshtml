@@ -4,6 +4,17 @@
 }
 <a asp-controller="Employee" asp-action="Create" class="btn btn-primary ">Add New Employee</a>
 
+
+<div class="mt-5 alert alert-danger">
+    <h3>@ViewBag.message</h3>
+</div>
+<div class="mt-5 alert alert-danger">
+    <h3>@ViewData["test message"]</h3>
+</div>
+<div class="mt-5 alert alert-danger">
+    <h3>@TempData["test temp message"]</h3>
+</div>
+
 <div class="row justify-content-center align-items-center mt-5">
     <form class="row col-8 offset-2" asp-action="Index">
 
