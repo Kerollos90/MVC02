@@ -1,6 +1,8 @@
 ﻿using Company.Data.Entity;
 using Company.Repository.Interfaces;
 using Company.Service.Interface.DepartmenInterface;
+using Company.Service.Interface.DepartmenInterface.Dto;
+using Company.Service.Interface.EmployeeInterface.Dto;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -40,7 +42,7 @@ namespace MVC02.Controllers
 
 
         [HttpPost]
-        public IActionResult Create(Department department) 
+        public IActionResult Create(DepartmentDto department) 
         {
             try
             {
@@ -97,7 +99,7 @@ namespace MVC02.Controllers
 
 
         [HttpPost]
-        public IActionResult Update(int? id,Department department)
+        public IActionResult Update(int? id,DepartmentDto department)
         {
             if(department.Id != id.Value )
                 return RedirectToAction("NotFound", "Home");
@@ -112,16 +114,17 @@ namespace MVC02.Controllers
         
         }  
         
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id,DepartmentDto department)
         {
-            var dept = _departmentService.GetById(id);
+           
 
 
-            if (dept is null)
+            if (department.Id !=id)
                 return RedirectToAction("NotFound", "Home");
 
 
-            _departmentService.Delete(dept);
+
+            _departmentService.Delete(department);
             return RedirectToAction(nameof(Index));
 
             

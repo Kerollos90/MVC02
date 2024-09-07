@@ -1,6 +1,7 @@
 ﻿using Company.Data.Entity;
 using Company.Service.Interface.DepartmenInterface;
 using Company.Service.Interface.EmployeeInterface;
+using Company.Service.Interface.EmployeeInterface.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
@@ -19,17 +20,19 @@ namespace MVC02.Controllers
         }
         public IActionResult Index(string SearchInp)
         {
-            ViewBag.message = "Hello from employee index (viewbag)";
-            ViewData["test message"]= "Hello from employee index(viewdata)";
-            TempData["test temp message"] = "Hello from employee index (temp)";
+            //ViewBag.message = "Hello from employee index (viewbag)";
+            //ViewData["test message"]= "Hello from employee index(viewdata)";
+            //TempData["test temp message"] = "Hello from employee index (temp)";
 
 
 
-            IEnumerable<Employee> emp = new List<Employee>();
+            IEnumerable<EmployeeDto> emp = new List<EmployeeDto>();
             if (string.IsNullOrWhiteSpace(SearchInp))
                 emp = _employeeService.GetAll();
             else
                 emp = _employeeService.GetEmployeeByName(SearchInp);
+
+
             return View(emp);
         }
 
@@ -42,7 +45,7 @@ namespace MVC02.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Employee employee)
+        public IActionResult Create(EmployeeDto employee)
         {
             try
             {
@@ -93,7 +96,7 @@ namespace MVC02.Controllers
 
 
         [HttpPost]
-        public IActionResult Update(int? id, Employee employee)
+        public IActionResult Update(int? id, EmployeeDto employee)
         {
 
             if (employee.Id != id.Value)
@@ -106,12 +109,14 @@ namespace MVC02.Controllers
 
         }
 
-        public IActionResult Delete(Employee employee, int? id)
+        public IActionResult Delete(EmployeeDto employee, int? id)
         {
             if (employee.Id != id.Value)
                 return RedirectToAction("NotFound", "Home");
 
+           
             _employeeService.Delete(employee);
+            
             return RedirectToAction(nameof(Index));
 
 
