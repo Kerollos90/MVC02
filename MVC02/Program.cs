@@ -41,7 +41,7 @@ public class Program
         builder.Services.AddAutoMapper(x => x.AddProfile(new DepartmentProfile()));
 
 
-        builder.Services.AddIdentity<ApplicationUser, IdentityUser>(config =>
+        builder.Services.AddIdentity<ApplicationUser, IdentityRole>(config =>
         {
             config.Password.RequiredUniqueChars = 2;
             config.Password.RequireDigit = true;

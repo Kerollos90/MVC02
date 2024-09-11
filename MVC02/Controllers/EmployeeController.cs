@@ -45,6 +45,7 @@ namespace MVC02.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(EmployeeDto employee)
         {
             try
