@@ -1,4 +1,5 @@
 using Company.Data.Context;
+using Company.Data.Entity;
 using Company.Repository.Interfaces;
 using Company.Repository.Repositories;
 using Company.Service.Interface.DepartmenInterface;
@@ -6,6 +7,7 @@ using Company.Service.Interface.EmployeeInterface;
 using Company.Service.Mapping;
 using Company.Service.Service.Departmentservice;
 using Company.Service.Service.Employeeservice;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -38,6 +40,68 @@ public class Program
         builder.Services.AddAutoMapper(x => x.AddProfile(new EmployeeProfile()));
         builder.Services.AddAutoMapper(x => x.AddProfile(new DepartmentProfile()));
 
+
+        builder.Services.AddIdentity<ApplicationUser, IdentityRole>(config =>
+        {
+            config.Password.RequiredUniqueChars = 2;
+            config.Password.RequireDigit = true;
+            config.Password.RequireLowercase = true;
+            config.Password.RequireUppercase = true;
+            config.Password.RequireNonAlphanumeric = true;
+            config.Password.RequiredLength = 6;
+            config.User.RequireUniqueEmail = true;
+            config.Lockout.AllowedForNewUsers = true;
+            config.Lockout.AllowedForNewUsers = true;
+            config.Lockout.MaxFailedAccessAttempts = 3;
+            config.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromHours(1);
+
+
+
+
+
+
+
+        }).AddEntityFrameworkStores<CompanyDbContext>().AddDefaultTokenProviders();
+
+
+
+
+
+
+        builder.Services.ConfigureApplicationCookie(option =>
+        {
+            option.Cookie.HttpOnly = true;
+            option.ExpireTimeSpan = TimeSpan.FromDays(1);
+            option.SlidingExpiration = true;
+            option.LoginPath = "/Account/Login";
+            option.LogoutPath = "/Account/Logout";
+            option.AccessDeniedPath = "/Account/AccessDenied";
+            option.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            option.Cookie.SameSite=SameSiteMode.Strict;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        });
+
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -53,6 +117,7 @@ public class Program
         app.UseStaticFiles();
 
         app.UseRouting();
+        app.UseAuthentication();
 
         app.UseAuthorization();
 

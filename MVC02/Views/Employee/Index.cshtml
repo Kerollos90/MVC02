@@ -44,6 +44,7 @@
             <tr>
                 <th>@Html.DisplayNameFor(D => D.Id)</th>
                 <th>@Html.DisplayNameFor(D => D.Name)</th>
+                <th>@Html.DisplayNameFor(D => D.Image)</th>
                 <th>@Html.DisplayNameFor(D => D.CreateAt)</th>
                 <th>Details</th>
                 <th>Update</th>
@@ -61,7 +62,7 @@
                     <td>@employee.Id</td>
                     <td>@employee.Name</td>
                     <th>
-                       <img src=" ~/files/Images/@employee.ImageUrl" height="40" width="40" alt=""/>
+                       <img src="~/Files/Images/@employee.ImageUrl" height="40" width="40" alt=""/>
 
                     </th>
                     <td>@employee.CreateAt</td>

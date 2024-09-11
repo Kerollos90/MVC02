@@ -45,6 +45,7 @@ namespace MVC02.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(EmployeeDto employee)
         {
             try
@@ -101,6 +102,11 @@ namespace MVC02.Controllers
 
             if (employee.Id != id.Value)
                 return RedirectToAction("NotFound", "Home");
+
+            
+
+
+
 
             _employeeService.Update(employee);
             return RedirectToAction(nameof(Index));
