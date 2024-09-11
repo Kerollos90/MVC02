@@ -10,16 +10,18 @@ namespace Company.Service.Helper
     public class DocumentSettings
     {
 
-        public static string FileUpload(IFormFile File , string FolderName)
+        public static string FileUpload(IFormFile file , string foldername)
         {
-            var FoledrPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot//Files", FolderName);
+            var FoledrPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Files", foldername);
 
-            var filename = $"{Guid.NewGuid() }-{File.FileName }";
+            var filename = $"{Guid.NewGuid() }-{file.FileName }";
 
-            var filepath = Path.Combine(FoledrPath, FolderName);
+            var filepath = Path.Combine(FoledrPath, filename);
 
             using var filestream = new FileStream(filepath, FileMode.Create);
-            File.CopyTo(filestream);
+
+            file.CopyTo(filestream);
+
             return filename;
 
 
@@ -28,5 +30,9 @@ namespace Company.Service.Helper
 
 
         }
+
+
+
+        
     }
 }

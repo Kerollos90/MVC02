@@ -41,7 +41,7 @@ namespace Company.Service.Service.Employeeservice
 
             //};
 
-            employee.ImageUrl = DocumentSettings.FileUpload(employee.Image,"Images");
+            employee.ImageUrl = DocumentSettings.FileUpload(employee.Image, "Images");
             Employee emp = _mapper.Map<Employee>(employee);
 
             _unitOfWork.EmployeeRepository.Add(emp);          
@@ -68,6 +68,8 @@ namespace Company.Service.Service.Employeeservice
 
 
             //};
+            
+
             Employee emp = _mapper.Map<Employee>(employeeDto);
 
             _unitOfWork.EmployeeRepository.Delete(emp);
@@ -169,7 +171,7 @@ namespace Company.Service.Service.Employeeservice
             
         }
 
-        public void Update(EmployeeDto employee)
+        public void Update(EmployeeDto employeeDto)
         {
             //Employee employeeDto = new Employee
             //{
@@ -192,12 +194,26 @@ namespace Company.Service.Service.Employeeservice
 
             //};
 
-            Employee emp = _mapper.Map<Employee>(employee);
 
 
+
+            
+
+
+            employeeDto.ImageUrl = DocumentSettings.FileUpload(employeeDto.Image, "Images");
+
+            
+                
+
+
+            Employee emp = _mapper.Map<Employee>(employeeDto);
+
+            
+            
             _unitOfWork.EmployeeRepository.Update(emp);
 
             _unitOfWork.Complete();
+
         }
     }
 }
