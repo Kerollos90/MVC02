@@ -13,13 +13,13 @@ namespace MVC02.Controllers
         {
             _userManager = userManager;
         }
-        public IActionResult SignUp()
+        public IActionResult LogIn()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> SignUp(SignUpViewModel signUp)
+        public async Task<IActionResult> LogIn(SignUpViewModel signUp)
         {
             if (ModelState.IsValid)
             {
@@ -47,5 +47,42 @@ namespace MVC02.Controllers
 
             return View(signUp);
         }
-    }
+
+
+
+		public IActionResult SignUp()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> SignUp(SignUpViewModel signUp)
+		{
+			if (ModelState.IsValid)
+			{
+				var user = new ApplicationUser
+				{
+					UserName = signUp.Email.Split("@")[0],
+					Email = signUp.Email,
+					FirstName = signUp.FirstName,
+					LastName = signUp.LastName,
+					IsActive = true
+
+
+				};
+
+				var result = await _userManager.CreateAsync(user, signUp.Password);
+
+				if (result.Succeeded)
+					return RedirectToAction("LogIn");
+
+
+				foreach (var e in result.Errors)
+					ModelState.AddModelError("", e.Description);
+
+			}
+
+			return View(signUp);
+		}
+	}
 }
