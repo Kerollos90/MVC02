@@ -1,4 +1,5 @@
 ﻿using Company.Data.Entity;
+using Company.Service.Helper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
@@ -98,5 +99,60 @@ namespace MVC02.Controllers
 		
 		}
 
-	}
+        public IActionResult ForgetPassword()
+        {
+          
+            return View();
+
+
+        }
+
+		[HttpPost]
+        public async Task<IActionResult> ForgetPassword(ForgetPasswordViewModel input )
+		{
+			if (ModelState.IsValid)
+			{ 
+				var  user = await _userManager.FindByEmailAsync(input.Email);
+
+				if (user is not null)
+				{
+					var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+					var url = Url.Action("ResetPassword", "Account", new { email = input.Email, token = token },Request.Scheme);
+
+					var email = new Email
+					{
+						body = url,
+						subject = "Reset Password",
+						to = input.Email
+
+
+					};
+
+					EmailSettings.SendEmail(email);
+
+					return RedirectToAction(nameof(CheckYourInbox));
+
+
+
+
+				
+				}
+
+			
+			
+			}
+			return View(input);
+		
+		
+		}
+
+		public IActionResult CheckYourInbox()
+		{
+			return View();
+		
+		}
+
+
+    }
 }
