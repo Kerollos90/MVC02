@@ -153,6 +153,42 @@ namespace MVC02.Controllers
 		
 		}
 
+        public IActionResult ResetPassword()
+        {
+            return View();
+
+        }
+
+		[HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel input)
+        {
+			if (ModelState.IsValid)
+			{
+				var user = await _userManager.FindByEmailAsync(input.Email);
+
+
+
+                if (user is not null)
+                {
+					var result = await _userManager.ResetPasswordAsync(user, input.Token, input.Password);
+
+					if(result.Succeeded)
+					return RedirectToAction("LogIn");
+
+					foreach (var i in result.Errors)
+						ModelState.AddModelError("", i.Description);
+                }
+
+				
+
+
+
+            }
+
+            return View(input);
+
+        }
+
 
     }
 }
