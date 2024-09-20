@@ -88,5 +88,15 @@ namespace MVC02.Controllers
 
 			return View(signUp);
 		}
+
+		public new async Task<IActionResult> SignOut()
+		{ 
+			await _signInManager.SignOutAsync();
+
+			return RedirectToAction("LogIn");
+		
+		
+		}
+
 	}
 }
