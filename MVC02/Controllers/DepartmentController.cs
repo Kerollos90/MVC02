@@ -3,6 +3,7 @@ using Company.Repository.Interfaces;
 using Company.Service.Interface.DepartmenInterface;
 using Company.Service.Interface.DepartmenInterface.Dto;
 using Company.Service.Interface.EmployeeInterface.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -11,6 +12,7 @@ using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 
 namespace MVC02.Controllers
 {
+    [Authorize]
     public class DepartmentController : Controller
     {
         private readonly IDepartmentService _departmentService;

@@ -2,12 +2,14 @@
 using Company.Service.Interface.DepartmenInterface;
 using Company.Service.Interface.EmployeeInterface;
 using Company.Service.Interface.EmployeeInterface.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 
 namespace MVC02.Controllers
 {
+    [Authorize]
     public class EmployeeController : Controller
     {
         private readonly IEmployeeService _employeeService;

@@ -190,5 +190,14 @@ namespace MVC02.Controllers
         }
 
 
+
+		public IActionResult AccessDenied()
+		{ 
+			return View();
+		
+		
+		}
+
+
     }
 }

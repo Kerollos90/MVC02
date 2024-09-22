@@ -73,7 +73,7 @@ public class Program
             option.Cookie.HttpOnly = true;
             option.ExpireTimeSpan = TimeSpan.FromDays(1);
             option.SlidingExpiration = true;
-            option.LoginPath = "/Account/Login";
+            option.LoginPath = "/Account/LogIn";
             option.LogoutPath = "/Account/Logout";
             option.AccessDeniedPath = "/Account/AccessDenied";
             option.Cookie.SecurePolicy = CookieSecurePolicy.Always;
@@ -121,9 +121,11 @@ public class Program
 
         app.UseAuthorization();
 
+       
+
         app.MapControllerRoute(
             name: "default",
-            pattern: "{controller=Home}/{action=Index}");
+            pattern: "{controller=Account}/{action=LogIn}");
 
         app.Run();
     }

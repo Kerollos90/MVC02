@@ -1,12 +1,15 @@
 ﻿using Company.Data.Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVC02.Models;
 using System.Data;
+using System.Runtime.CompilerServices;
 
 namespace MVC02.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class RoleController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleController;
