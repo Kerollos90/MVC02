@@ -33,5 +33,24 @@ namespace MVC02.Controllers
 
             return View(users);
         }
+
+
+
+
+        public async Task<IActionResult> Details(string id , string viewname ="Details" )
+        {
+
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user == null)
+                return NotFound();
+
+
+
+            return View(viewname,user);
+        }
+
+
+
     }
 }
