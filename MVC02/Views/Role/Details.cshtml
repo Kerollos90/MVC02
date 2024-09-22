@@ -1,0 +1,19 @@
+﻿@model RoleViewModel
+
+
+<h1>Role Details</h1>
+
+<div>
+    <partial name="PartialView/DetailsDeletePartialView" model="@Model" />
+</div>
+<div>
+
+    <a asp-action="Update" asp-route-id="@Model.Id" class="btn btn-light">Update </a>
+    <a asp-action="Index" class="btn btn-light">Back To List</a>
+
+
+</div>
+
+
+
+
