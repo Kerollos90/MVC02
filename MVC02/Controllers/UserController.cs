@@ -129,10 +129,39 @@ namespace MVC02.Controllers
 
 
 
-            return View();
+            return View(nameof(Index));
 
         }
 
+
+       
+
+        
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return View();
+
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+                return View();
+
+            var result = await _userManager.DeleteAsync(user);
+            if (result.Succeeded)
+                return RedirectToAction("Index");
+
+            foreach (var item in result.Errors)
+                _logger.LogError(item.Description);
+
+
+
+
+
+            return RedirectToAction("Index");
+
+
+
+        }
 
     }
 }
