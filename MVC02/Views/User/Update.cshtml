@@ -1,0 +1,21 @@
+﻿@model UpdatedUserModelView
+
+
+<h1>Update User</h1>
+<br />
+<br />
+
+<form asp-action="Update" enctype="multipart/form-data">
+    <div asp-validation-summary="All"></div>
+    <input hidden asp-for="Id"/>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="UserName"></label>
+        <input type="Text" asp-for="UserName" class="form-control" />
+       
+    </div>
+    <br/>
+
+    <input type="submit" value="Save" class="btn btn-primary" />
+    <a asp-action="Index" class=" btn btn-light">Back To List</a>
+
+</form>
