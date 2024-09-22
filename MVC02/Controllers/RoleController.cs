@@ -191,11 +191,15 @@ namespace MVC02.Controllers
         {
             var role = await _roleController.FindByIdAsync(RoleId);
             if(role is null)
+
                 return RedirectToAction(nameof(NotFound),"Home");
+                ViewBag.RoleId = RoleId;
 
             var users = await _userManager.Users.ToListAsync();
 
             var UserInRoles = new List<UsersInRolesViewModel>();
+
+
 
             foreach (var user in users)
             {
@@ -223,6 +227,48 @@ namespace MVC02.Controllers
 
 
             return View(UserInRoles);
+        
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddOrRemoveUsers(string RoleId ,List<UsersInRolesViewModel> users ) 
+        {
+            var roles = await _roleController.FindByIdAsync(RoleId);
+            if (roles is null)
+                return RedirectToAction(nameof(NotFound), "Home");
+
+            if (ModelState.IsValid)
+            {
+
+                foreach (var user in users)
+                {
+                    var userApp = await _userManager.FindByIdAsync(user.Id);
+
+                    if (userApp is not null)
+                    {
+
+                        if (user.IsSelected && !await _userManager.IsInRoleAsync(userApp, roles.Name))
+                            await _userManager.AddToRoleAsync(userApp, roles.Name);
+                        if(!user.IsSelected&&await _userManager.IsInRoleAsync(userApp,roles.Name))
+                            await _userManager.RemoveFromRoleAsync(userApp, roles.Name);
+
+                    }
+
+
+
+
+
+
+                }
+
+                    return RedirectToAction("Update", new { id = roles.Id });
+
+            }
+
+            return View(users);
+        
+        
+        
         
         }
 
